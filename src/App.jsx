@@ -1704,7 +1704,7 @@ export const App = () => {
         </div>
         <div className="w-[30%] max-md:w-full bg-white rounded-xl py-3 px-1">
           <div className="flex flex-col gap-3">
-            <h1 className="text-2xl font-semibold">Details</h1>
+            <h1 className="text-2xl font-semibold text-center">Route Details</h1>
             <div className="flex flex-col gap-4">
               <div className="bg-gray-300 p-2 rounded-xl">
                 <h1 className="text-black font-semibold text-xl">
@@ -1788,7 +1788,6 @@ export const App = () => {
                       </span>
                     </label>
                   </p>
-
                   <p className="flex items-center gap-1">
                     <input
                       type="checkbox"
