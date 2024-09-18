@@ -1435,352 +1435,380 @@ export const App = () => {
   }
 
   return (
-    <div className="w-[100%] h-[100%] flex gap-0 ">
-      <div className="flex justify-center gap-2 item-center p-1 bg-white w-[75%] rounded-xl overflow-hidden">
-        <div
-          style={{ height: "100%", width: "100%" }}
-          className="rounded-xl overflow-hidden flex justify-center items-center"
-        >
-          {directionsService && directionsRenderer ? (
-            <GoogleMap
-              mapContainerStyle={mapContainerStyle}
-              zoom={13}
-              center={center}
-              options={{
-                mapTypeId: "roadmap",
-                disableDefaultUI: false,
-                options: mapOptions,
-              }}
-              onLoad={onMapLoad}
-            >
-              {/* route 1 */}
-              {showRoute1 && (
-                <>
-                  {" "}
-                  <Polyline
-                    path={polyline1}
-                    options={{
-                      strokeColor: "orange",
-                      strokeOpacity: 0.8,
-                      strokeWeight: 3,
-                    }}
-                  />
-                  {route1.map((coord, index, arr) => (
-                    <React.Fragment key={index}>
-                      <span className="w-fit h-5 ">
-                        <Marker
-                          key={index}
-                          position={coord}
-                          icon={{
-                            url:
+    <div>
+      <h1 className="text-center text-3xl font-bold p-2">
+        <span className="text-[#49c401]">Aaveg</span> Shuttle Upcoming Routes
+      </h1>
+
+      <div className="h-full w-full flex max-md:flex-col gap-4 max-md:gap-1">
+        <div className="flex justify-center gap-2 item-center p-1 bg-white w-[70%] max-md:w-[100%] max-md:h-[450px] max-md:p-2 rounded-xl">
+          <div
+            style={{ height: "100%", width: "100%" }}
+            className="rounded-xl overflow-hidden flex justify-center items-center"
+          >
+            {directionsService && directionsRenderer ? (
+              <GoogleMap
+                mapContainerStyle={mapContainerStyle}
+                zoom={13}
+                center={center}
+                options={{
+                  mapTypeId: "roadmap",
+                  disableDefaultUI: false,
+                  options: mapOptions,
+                }}
+                onLoad={onMapLoad}
+              >
+                {/* route 1 */}
+                {showRoute1 && (
+                  <>
+                    {" "}
+                    <Polyline
+                      path={polyline1}
+                      options={{
+                        strokeColor: "orange",
+                        strokeOpacity: 0.8,
+                        strokeWeight: 3,
+                      }}
+                    />
+                    {route1.map((coord, index, arr) => (
+                      <React.Fragment key={index}>
+                        <span className="w-fit h-5 ">
+                          <Marker
+                            key={index}
+                            position={coord}
+                            icon={{
+                              url:
+                                index === 0
+                                  ? startpoint
+                                  : index === arr.length - 1
+                                  ? endpoint
+                                  : reachstop,
+                              scaledSize: new window.google.maps.Size(
+                                index === 0 || index === arr.length - 1
+                                  ? 40
+                                  : 10, // Change size for start/end points
+                                index === 0 || index === arr.length - 1
+                                  ? 40
+                                  : 10 // Change size for start/end points
+                              ),
+                            }}
+                            title={
                               index === 0
-                                ? startpoint
+                                ? "Start Point"
                                 : index === arr.length - 1
-                                ? endpoint
-                                : reachstop,
-                            scaledSize: new window.google.maps.Size(
-                              index === 0 || index === arr.length - 1 ? 50 : 10, // Change size for start/end points
-                              index === 0 || index === arr.length - 1 ? 50 : 10 // Change size for start/end points
-                            ),
-                          }}
-                          title={
-                            index === 0
-                              ? "Start Point"
-                              : index === arr.length - 1
-                              ? "End Point"
-                              : `Stop ${coord.stopName}`
-                          }
-                        ></Marker>
-                      </span>
-                    </React.Fragment>
-                  ))}
-                </>
-              )}
-              {/* route2 */}
-              {showRoute2 && (
-                <>
-                  <Polyline
-                    path={polyline2}
-                    options={{
-                      strokeColor: "yellow",
-                      strokeOpacity: 0.8,
-                      strokeWeight: 3,
-                    }}
-                  />
-                  {route2.map((coord, index, arr) => (
-                    <React.Fragment key={index}>
-                      <span className="w-fit h-5 ">
-                        <Marker
-                          key={index}
-                          position={coord}
-                          icon={{
-                            url:
+                                ? "End Point"
+                                : `Stop ${coord.stopName}`
+                            }
+                          ></Marker>
+                        </span>
+                      </React.Fragment>
+                    ))}
+                  </>
+                )}
+                {/* route2 */}
+                {showRoute2 && (
+                  <>
+                    <Polyline
+                      path={polyline2}
+                      options={{
+                        strokeColor: "yellow",
+                        strokeOpacity: 0.8,
+                        strokeWeight: 3,
+                      }}
+                    />
+                    {route2.map((coord, index, arr) => (
+                      <React.Fragment key={index}>
+                        <span className="w-fit h-5 ">
+                          <Marker
+                            key={index}
+                            position={coord}
+                            icon={{
+                              url:
+                                index === 0
+                                  ? startpoint
+                                  : index === arr.length - 1
+                                  ? endpoint
+                                  : reachstop,
+                              scaledSize: new window.google.maps.Size(
+                                index === 0 || index === arr.length - 1
+                                  ? 40
+                                  : 10, // Change size for start/end points
+                                index === 0 || index === arr.length - 1
+                                  ? 40
+                                  : 10 // Change size for start/end points
+                              ),
+                            }}
+                            title={
                               index === 0
-                                ? startpoint
+                                ? "Start Point"
                                 : index === arr.length - 1
-                                ? endpoint
-                                : reachstop,
-                            scaledSize: new window.google.maps.Size(
-                              index === 0 || index === arr.length - 1 ? 50 : 10, // Change size for start/end points
-                              index === 0 || index === arr.length - 1 ? 50 : 10 // Change size for start/end points
-                            ),
-                          }}
-                          title={
-                            index === 0
-                              ? "Start Point"
-                              : index === arr.length - 1
-                              ? "End Point"
-                              : `Stop ${coord.stopName}`
-                          }
-                        ></Marker>
-                      </span>
-                    </React.Fragment>
-                  ))}
-                </>
-              )}
-              {/* route3 */}
-              {showRoute3 && (
-                <>
-                  {" "}
-                  <Polyline
-                    path={polyline3}
-                    options={{
-                      strokeColor: "green",
-                      strokeOpacity: 0.8,
-                      strokeWeight: 3,
-                    }}
-                  />
-                  {route3.map((coord, index, arr) => (
-                    <React.Fragment key={index}>
-                      <span className="w-fit h-5 ">
-                        <Marker
-                          key={index}
-                          position={coord}
-                          icon={{
-                            url:
+                                ? "End Point"
+                                : `Stop ${coord.stopName}`
+                            }
+                          ></Marker>
+                        </span>
+                      </React.Fragment>
+                    ))}
+                  </>
+                )}
+                {/* route3 */}
+                {showRoute3 && (
+                  <>
+                    {" "}
+                    <Polyline
+                      path={polyline3}
+                      options={{
+                        strokeColor: "green",
+                        strokeOpacity: 0.8,
+                        strokeWeight: 3,
+                      }}
+                    />
+                    {route3.map((coord, index, arr) => (
+                      <React.Fragment key={index}>
+                        <span className="w-fit h-5 ">
+                          <Marker
+                            key={index}
+                            position={coord}
+                            icon={{
+                              url:
+                                index === 0
+                                  ? startpoint
+                                  : index === arr.length - 1
+                                  ? endpoint
+                                  : reachstop,
+                              scaledSize: new window.google.maps.Size(
+                                index === 0 || index === arr.length - 1
+                                  ? 40
+                                  : 10, // Change size for start/end points
+                                index === 0 || index === arr.length - 1
+                                  ? 40
+                                  : 10 // Change size for start/end points
+                              ),
+                            }}
+                            title={
                               index === 0
-                                ? startpoint
+                                ? "Start Point"
                                 : index === arr.length - 1
-                                ? endpoint
-                                : reachstop,
-                            scaledSize: new window.google.maps.Size(
-                              index === 0 || index === arr.length - 1 ? 50 : 10, // Change size for start/end points
-                              index === 0 || index === arr.length - 1 ? 50 : 10 // Change size for start/end points
-                            ),
-                          }}
-                          title={
-                            index === 0
-                              ? "Start Point"
-                              : index === arr.length - 1
-                              ? "End Point"
-                              : `Stop ${coord.stopName}`
-                          }
-                        ></Marker>
-                      </span>
-                    </React.Fragment>
-                  ))}
-                </>
-              )}
-              {/* route 4 */}
-              {showRoute4 && (
-                <>
-                  {" "}
-                  <Polyline
-                    path={polyline4}
-                    options={{
-                      strokeColor: "red",
-                      strokeOpacity: 0.8,
-                      strokeWeight: 3,
-                    }}
-                  />
-                  {route4.map((coord, index, arr) => (
-                    <React.Fragment key={index}>
-                      <span className="w-fit h-5 ">
-                        <Marker
-                          key={index}
-                          position={coord}
-                          icon={{
-                            url:
+                                ? "End Point"
+                                : `Stop ${coord.stopName}`
+                            }
+                          ></Marker>
+                        </span>
+                      </React.Fragment>
+                    ))}
+                  </>
+                )}
+                {/* route 4 */}
+                {showRoute4 && (
+                  <>
+                    {" "}
+                    <Polyline
+                      path={polyline4}
+                      options={{
+                        strokeColor: "red",
+                        strokeOpacity: 0.8,
+                        strokeWeight: 3,
+                      }}
+                    />
+                    {route4.map((coord, index, arr) => (
+                      <React.Fragment key={index}>
+                        <span className="w-fit h-5 ">
+                          <Marker
+                            key={index}
+                            position={coord}
+                            icon={{
+                              url:
+                                index === 0
+                                  ? startpoint
+                                  : index === arr.length - 1
+                                  ? endpoint
+                                  : reachstop,
+                              scaledSize: new window.google.maps.Size(
+                                index === 0 || index === arr.length - 1
+                                  ? 40
+                                  : 10, // Change size for start/end points
+                                index === 0 || index === arr.length - 1
+                                  ? 40
+                                  : 10 // Change size for start/end points
+                              ),
+                            }}
+                            title={
                               index === 0
-                                ? startpoint
+                                ? "Start Point"
                                 : index === arr.length - 1
-                                ? endpoint
-                                : reachstop,
-                            scaledSize: new window.google.maps.Size(
-                              index === 0 || index === arr.length - 1 ? 50 : 10, // Change size for start/end points
-                              index === 0 || index === arr.length - 1 ? 50 : 10 // Change size for start/end points
-                            ),
-                          }}
-                          title={
-                            index === 0
-                              ? "Start Point"
-                              : index === arr.length - 1
-                              ? "End Point"
-                              : `Stop ${coord.stopName}`
-                          }
-                        ></Marker>
-                      </span>
-                    </React.Fragment>
-                  ))}
-                </>
-              )}
-              {/* route 5 */}
-              {showRoute5 && (
-                <>
-                  {" "}
-                  <Polyline
-                    path={polyline5}
-                    options={{
-                      strokeColor: "purple",
-                      strokeOpacity: 0.8,
-                      strokeWeight: 3,
-                    }}
-                  />
-                  {route5.map((coord, index, arr) => (
-                    <React.Fragment key={index}>
-                      <span className="w-fit h-5 ">
-                        <Marker
-                          key={index}
-                          position={coord}
-                          icon={{
-                            url:
+                                ? "End Point"
+                                : `Stop ${coord.stopName}`
+                            }
+                          ></Marker>
+                        </span>
+                      </React.Fragment>
+                    ))}
+                  </>
+                )}
+                {/* route 5 */}
+                {showRoute5 && (
+                  <>
+                    {" "}
+                    <Polyline
+                      path={polyline5}
+                      options={{
+                        strokeColor: "purple",
+                        strokeOpacity: 0.8,
+                        strokeWeight: 3,
+                      }}
+                    />
+                    {route5.map((coord, index, arr) => (
+                      <React.Fragment key={index}>
+                        <span className="w-fit h-5 ">
+                          <Marker
+                            key={index}
+                            position={coord}
+                            icon={{
+                              url:
+                                index === 0
+                                  ? startpoint
+                                  : index === arr.length - 1
+                                  ? endpoint
+                                  : reachstop,
+                              scaledSize: new window.google.maps.Size(
+                                index === 0 || index === arr.length - 1
+                                  ? 40
+                                  : 10, // Change size for start/end points
+                                index === 0 || index === arr.length - 1
+                                  ? 40
+                                  : 10 // Change size for start/end points
+                              ),
+                            }}
+                            title={
                               index === 0
-                                ? startpoint
+                                ? "Start Point"
                                 : index === arr.length - 1
-                                ? endpoint
-                                : reachstop,
-                            scaledSize: new window.google.maps.Size(
-                              index === 0 || index === arr.length - 1 ? 50 : 10, // Change size for start/end points
-                              index === 0 || index === arr.length - 1 ? 50 : 10 // Change size for start/end points
-                            ),
-                          }}
-                          title={
-                            index === 0
-                              ? "Start Point"
-                              : index === arr.length - 1
-                              ? "End Point"
-                              : `Stop ${coord.stopName}`
-                          }
-                        ></Marker>
-                      </span>
-                    </React.Fragment>
-                  ))}
-                </>
-              )}
-            </GoogleMap>
-          ) : (
-            <div>
-              <div className="flex items-center justify-center w-full h-full">
-                <p className=" block animate-spin border-4 border-t-blue-500 h-10 w-10 rounded-full "></p>
+                                ? "End Point"
+                                : `Stop ${coord.stopName}`
+                            }
+                          ></Marker>
+                        </span>
+                      </React.Fragment>
+                    ))}
+                  </>
+                )}
+              </GoogleMap>
+            ) : (
+              <div>
+                <div className="flex items-center justify-center w-full h-full">
+                  <p className=" block animate-spin border-4 border-t-blue-500 h-10 w-10 rounded-full "></p>
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
-      </div>
-      <div className="w-[25%] bg-white rounded-xl py-3 px-1">
-        <div className="flex flex-col gap-3">
-          <h1 className="text-2xl font-semibold">Details</h1>
-          <div className="flex flex-col gap-4">
-            <div className="bg-gray-300 p-2 rounded-xl">
-              <h1 className="text-black font-semibold text-xl">Select Route</h1>
+        <div className="w-[30%] max-md:w-full bg-white rounded-xl py-3 px-1">
+          <div className="flex flex-col gap-3">
+            <h1 className="text-2xl font-semibold">Details</h1>
+            <div className="flex flex-col gap-4">
+              <div className="bg-gray-300 p-2 rounded-xl">
+                <h1 className="text-black font-semibold text-xl">
+                  Select Route
+                </h1>
 
-              <div className="flex flex-col gap-1 mt-1">
-                <p className="flex items-center gap-1">
-                  <input
-                    type="checkbox"
-                    id="Route1"
-                    checked={showRoute1}
-                    onChange={() => handleCheckBox1()}
-                  />
-                  <span className="block h-3 w-4 bg-orange-500"></span>
-                  <label
-                    htmlFor="Route1"
-                    className="font-medium flex items-center  gap-1 text-md"
-                  >
-                    <span className="w-32"> {route1[0].stopName}</span>
-                    <MultipleStopIcon />
-                    <span className="w-32">
-                      {route1[route1.length - 1].stopName}
-                    </span>
-                  </label>
-                </p>
-                <p className="flex items-center gap-1">
-                  <input
-                    type="checkbox"
-                    id="Route2"
-                    checked={showRoute2}
-                    onChange={() => handleCheckBox2()}
-                  />
-                  <span className="block h-3 w-4 bg-yellow-500"></span>
-                  <label
-                    htmlFor="Route2"
-                    className="font-medium flex items-center  gap-1 text-md"
-                  >
-                    <span className="w-32"> {route2[0].stopName}</span>
-                    <MultipleStopIcon />
-                    <span className="w-32">
-                      {route2[route2.length - 1].stopName}
-                    </span>
-                  </label>
-                </p>
-                <p className="flex items-center gap-1">
-                  <input
-                    type="checkbox"
-                    id="Route3"
-                    checked={showRoute3}
-                    onChange={() => handleCheckBox3()}
-                  />
-                  <span className="block h-3 w-4 bg-green-500"></span>
-                  <label
-                    htmlFor="Route3"
-                    className="font-medium flex items-center  gap-1 text-md"
-                  >
-                    <span className="w-32"> {route3[0].stopName}</span>
-                    <MultipleStopIcon />
-                    <span className="w-32">
-                      {route3[route3.length - 1].stopName}
-                    </span>
-                  </label>
-                </p>
-                <p className="flex items-center gap-1">
-                  <input
-                    type="checkbox"
-                    id="Route4"
-                    checked={showRoute4}
-                    onChange={() => handleCheckBox4()}
-                  />
-                  <span className="block h-3 w-4 bg-red-500"></span>
-                  <label
-                    htmlFor="Route4"
-                    className="font-medium flex items-center  gap-1 text-md"
-                  >
-                    <span className="w-32"> {route4[0].stopName}</span>
-                    <MultipleStopIcon />
-                    <span className="w-32">
-                      {route4[route4.length - 1].stopName}
-                    </span>
-                  </label>
-                </p>
+                <div className="flex flex-col gap-1 mt-1">
+                  <p className="flex items-center gap-1">
+                    <input
+                      type="checkbox"
+                      id="Route1"
+                      checked={showRoute1}
+                      onChange={() => handleCheckBox1()}
+                    />
+                    <span className="block h-3 w-4 bg-orange-500"></span>
+                    <label
+                      htmlFor="Route1"
+                      className="font-medium flex items-center  gap-1 text-md"
+                    >
+                      <span className="w-32"> {route1[0].stopName}</span>
+                      <MultipleStopIcon />
+                      <span className="w-32">
+                        {route1[route1.length - 1].stopName}
+                      </span>
+                    </label>
+                  </p>
+                  <p className="flex items-center gap-1">
+                    <input
+                      type="checkbox"
+                      id="Route2"
+                      checked={showRoute2}
+                      onChange={() => handleCheckBox2()}
+                    />
+                    <span className="block h-3 w-4 bg-yellow-500"></span>
+                    <label
+                      htmlFor="Route2"
+                      className="font-medium flex items-center  gap-1 text-md"
+                    >
+                      <span className="w-32"> {route2[0].stopName}</span>
+                      <MultipleStopIcon />
+                      <span className="w-32">
+                        {route2[route2.length - 1].stopName}
+                      </span>
+                    </label>
+                  </p>
+                  <p className="flex items-center gap-1">
+                    <input
+                      type="checkbox"
+                      id="Route3"
+                      checked={showRoute3}
+                      onChange={() => handleCheckBox3()}
+                    />
+                    <span className="block h-3 w-4 bg-green-500"></span>
+                    <label
+                      htmlFor="Route3"
+                      className="font-medium flex items-center  gap-1 text-md"
+                    >
+                      <span className="w-32"> {route3[0].stopName}</span>
+                      <MultipleStopIcon />
+                      <span className="w-32">
+                        {route3[route3.length - 1].stopName}
+                      </span>
+                    </label>
+                  </p>
+                  <p className="flex items-center gap-1">
+                    <input
+                      type="checkbox"
+                      id="Route4"
+                      checked={showRoute4}
+                      onChange={() => handleCheckBox4()}
+                    />
+                    <span className="block h-3 w-4 bg-red-500"></span>
+                    <label
+                      htmlFor="Route4"
+                      className="font-medium flex items-center  gap-1 text-md"
+                    >
+                      <span className="w-32"> {route4[0].stopName}</span>
+                      <MultipleStopIcon />
+                      <span className="w-32">
+                        {route4[route4.length - 1].stopName}
+                      </span>
+                    </label>
+                  </p>
 
-                <p className="flex items-center gap-1">
-                  <input
-                    type="checkbox"
-                    id="Route5"
-                    checked={showRoute5}
-                    onChange={() => handleCheckBox5()}
-                  />
-                  <span className="block h-3 w-4 bg-purple-500"></span>
-                  <label
-                    htmlFor="Route5"
-                    className="font-medium flex items-center  gap-1 text-md"
-                  >
-                    <span className="w-32"> {route5[0].stopName}</span>
-                    <MultipleStopIcon />
-                    <span className="w-32">
-                      {route5[route5.length - 1].stopName}
-                    </span>
-                  </label>
-                </p>
+                  <p className="flex items-center gap-1">
+                    <input
+                      type="checkbox"
+                      id="Route5"
+                      checked={showRoute5}
+                      onChange={() => handleCheckBox5()}
+                    />
+                    <span className="block h-3 w-4 bg-purple-500"></span>
+                    <label
+                      htmlFor="Route5"
+                      className="font-medium flex items-center  gap-1 text-md"
+                    >
+                      <span className="w-32"> {route5[0].stopName}</span>
+                      <MultipleStopIcon />
+                      <span className="w-32">
+                        {route5[route5.length - 1].stopName}
+                      </span>
+                    </label>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
