@@ -311,7 +311,7 @@ const mapOptions = {
   ],
 };
 let center = { lat: 28.50259, lng: 77.09211 };
-
+// 23-09-2024 ---------- third Change
 export const App = () => {
   const [route1, setRoute1] = useState([
     {
@@ -420,7 +420,7 @@ export const App = () => {
       lng: 77.0913975481717,
     },
     {
-      stopName: "Building No. 10 Back Side",
+      stopName: "Cyber City",
       lat: 28.4917799260525,
       lng: 77.088110017789,
     },
@@ -575,7 +575,7 @@ export const App = () => {
       lng: 77.0187489604732,
     },
     {
-      stopName: "Air India/BMW Group, Sec 75",
+      stopName: "Vatika Chowk, Air India/BMW Group",
       lat: 28.40071484957543,
       lng: 77.01035067027895,
     },
